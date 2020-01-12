@@ -1,4 +1,5 @@
 ﻿using Blog.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@ namespace Blog.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Post>()
                 .HasOne(p => p.Author)
                 .WithMany(a => a.Posts)

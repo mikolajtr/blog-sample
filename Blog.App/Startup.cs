@@ -9,6 +9,7 @@ using Blog.Models.Converters;
 using Blog.Repositories;
 using Blog.Services;
 using Blog.DataAccess;
+using Blog.Models.Entities;
 
 namespace Blog.App
 {
@@ -27,7 +28,7 @@ namespace Blog.App
             services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<BlogDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
