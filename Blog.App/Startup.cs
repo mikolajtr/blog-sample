@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blog.App.Data;
+using Blog.Models.Converters;
+using Blog.Repositories;
+using Blog.Services;
+using Blog.DataAccess;
 
 namespace Blog.App
 {
@@ -28,6 +31,11 @@ namespace Blog.App
                 .AddEntityFrameworkStores<BlogDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // posts stuff
+            services.AddSingleton<IPostConverter, PostConverter>();
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IPostService, PostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
